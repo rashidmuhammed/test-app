@@ -5,8 +5,8 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
-    "start": "cd server/built && node index.js",
-    "prebuild": "cd server && npm run build",
+    "start": "cd server && npm start",
+    "build": "cd server && npm run build",
     "lint": "eslint .",
     "preview": "vite preview"
   },
