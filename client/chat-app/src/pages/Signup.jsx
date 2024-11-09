@@ -1,10 +1,16 @@
 import { useFormik } from "formik";
 import * as Yup from "yup";
 import { Link } from "react-router-dom";
+import AuthenticationService from "../Services/AuthenticationService";
+import { useNavigate } from "react-router-dom";
+
+import { toast } from "react-toastify";
+
 function Signup() {
+  const navigate = useNavigate();
   const validationSchema = Yup.object({
     name: Yup.string().required("First Name is required"),
-    lname: Yup.string().required("Last Name is required"),
+    // lname: Yup.string().required("Last Name is required"),
     email: Yup.string()
       .email("Invalid email format")
       .required("Email is required"),
@@ -25,8 +31,18 @@ function Signup() {
       cpassword: "",
     },
     validationSchema,
-    onSubmit: (values) => {
+    onSubmit: async (values) => {
       console.log("Form values:", values);
+      try {
+        const response = await AuthenticationService.signupUser(values);
+        console.log("res", response);
+        if (response) {
+          toast.success("user Created Sucessffully");
+          navigate("/login");
+        }
+      } catch (error) {
+        console.error("Error:", error?.message || "An error occurred");
+      }
     },
   });
 
@@ -67,7 +83,7 @@ function Signup() {
             ) : null}
           </div>
 
-          <div>
+          {/* <div>
             <label className="text-gray-800 text-sm mb-2 block">
               Last Name
             </label>
@@ -85,7 +101,7 @@ function Signup() {
                 {formik.errors.lname}
               </div>
             ) : null}
-          </div>
+          </div> */}
 
           <div>
             <label className="text-gray-800 text-sm mb-2 block">Email Id</label>
@@ -152,10 +168,11 @@ function Signup() {
             Sign up
           </button>
         </div>
+
+        <p>
+          <Link to="/login">alredy have an account ?</Link>
+        </p>
       </form>
-      <p>
-        <Link to="/signup">alredy have an account ?</Link>
-      </p>
     </div>
   );
 }

@@ -10,10 +10,8 @@ import {
 import { Bars3Icon, BellIcon, XMarkIcon } from "@heroicons/react/24/outline";
 
 const navigation = [
-  { name: "Dashboard", href: "#", current: true },
-  { name: "Team", href: "#", current: false },
-  { name: "Projects", href: "#", current: false },
-  { name: "Calendar", href: "#", current: false },
+  { name: "Enter Chat Room", lin: "/chatroom", current: true },
+  { name: "Create Activity", lin: "" },
 ];
 
 function classNames(...classes) {
@@ -42,19 +40,11 @@ function Header() {
               </DisclosureButton>
             </div>
             <div className="flex flex-1 items-center justify-center sm:items-stretch sm:justify-start">
-              <div className="flex shrink-0 items-center">
-                <img
-                  alt="Your Company"
-                  src="https://cdn.logojoy.com/wp-content/uploads/2018/05/30164225/572-768x591.png"
-                  className="h-8 w-auto"
-                />
-              </div>
               <div className="hidden sm:ml-6 sm:block">
                 <div className="flex space-x-4">
                   {navigation.map((item) => (
                     <a
                       key={item.name}
-                      href={item.href}
                       aria-current={item.current ? "page" : undefined}
                       className={classNames(
                         item.current
@@ -132,7 +122,6 @@ function Header() {
               <DisclosureButton
                 key={item.name}
                 as="a"
-                href={item.href}
                 aria-current={item.current ? "page" : undefined}
                 className={classNames(
                   item.current

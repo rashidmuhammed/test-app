@@ -1,14 +1,16 @@
 import { useFormik } from "formik";
 import { Link } from "react-router-dom";
 import * as Yup from "yup";
-
+import AuthenticationService from "../Services/AuthenticationService";
+import { useNavigate } from "react-router-dom";
 function Login() {
+  const navigate = useNavigate();
   const validationSchema = Yup.object({
     email: Yup.string()
       .email("Invalid email format")
       .required("Email is required"),
     password: Yup.string()
-      .min(8, "Password must be at least 8 characters")
+      //   .min(8, "Password must be at least 8 characters")
       .required("Password is required"),
   });
 
@@ -18,9 +20,18 @@ function Login() {
       password: "",
     },
     validationSchema,
-    onSubmit: (values) => {
+    onSubmit: async (values) => {
       console.log("Form values", values);
-      // Perform login action here (e.g., send data to the server)
+
+      try {
+        const response = await AuthenticationService.loginUser(values);
+        console.log("res", response);
+        if (response) {
+          navigate("/home");
+        }
+      } catch (error) {
+        console.error("Error:", error?.message || "An error occurred");
+      }
     },
   });
 

@@ -18,7 +18,7 @@ const registerUser = async (req, res) => {
 
     if (!name || !email || !password) {
       returnres.status(400).json({
-        error: "Email already there, No need to register again.",
+        error: "all fields are required",
       });
     }
 
@@ -40,13 +40,11 @@ const registerUser = async (req, res) => {
           flag = 0;
           console.error(err);
           return res.status(500).json({
-            error: "Database error",
+            error: "something went wrong",
           });
         } else {
           flag = 1;
-          res
-            .status(200)
-            .send({ message: "User added to database, not verified" });
+          res.status(200).json("User Created Successfully");
         }
       }
     );
