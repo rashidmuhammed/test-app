@@ -10,13 +10,18 @@ function App() {
   return (
     <>
       <ToastContainer />
+
       <Routes>
-        <Route path="/" element={<Protectedroute />}>
+        {/* Public Routes */}
+        <Route path="login" element={<Login />} />
+        <Route path="signup" element={<Signup />} />
+
+        {/* Protected Routes */}
+        <Route element={<Protectedroute />}>
+          <Route path="/" element={<Home />} />
           <Route path="home" element={<Home />} />
           <Route path="create" element={<CreateActivities />} />
         </Route>
-        <Route path="login" element={<Login />} />
-        <Route path="signup" element={<Signup />} />
       </Routes>
     </>
   );

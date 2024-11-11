@@ -1,5 +1,5 @@
 import axios from "axios";
-
+import { jwtDecode } from "jwt-decode";
 class AuthenticationService {
   constructor() {
     this.api = axios.create({
@@ -47,9 +47,16 @@ class AuthenticationService {
       );
       return response.data;
     } catch (error) {
-      console.error("Signup failed:", error);
+      console.error("activity failed:", error);
       throw error.response?.data || new Error("Signup error");
     }
+  }
+
+  getDecryptedToken() {
+    const encryptedToken = localStorage.getItem("authToken");
+    const decoded = jwtDecode(encryptedToken);
+
+    return decoded;
   }
 
   saveToken(token) {
