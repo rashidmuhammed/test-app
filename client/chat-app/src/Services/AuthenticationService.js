@@ -39,6 +39,19 @@ class AuthenticationService {
     }
   }
 
+  async createActivity(activity) {
+    try {
+      const response = await axios.post(
+        "http://localhost:5000/users/createActivity",
+        activity
+      );
+      return response.data;
+    } catch (error) {
+      console.error("Signup failed:", error);
+      throw error.response?.data || new Error("Signup error");
+    }
+  }
+
   saveToken(token) {
     localStorage.setItem("authToken", token);
   }
