@@ -1,156 +1,170 @@
+import React from "react";
 import {
-  Disclosure,
-  DisclosureButton,
-  DisclosurePanel,
-  Menu,
-  MenuButton,
-  MenuItem,
-  MenuItems,
-} from "@headlessui/react";
-import { Bars3Icon, BellIcon, XMarkIcon } from "@heroicons/react/24/outline";
-import { useNavigate, useLocation } from "react-router-dom";
-
-const navigation = [
-  { name: "Enter Chat Room", link: "/chatroom" },
-  { name: "Create Activities", link: "/create" },
-];
-
-function classNames(...classes) {
-  return classes.filter(Boolean).join(" ");
-}
+  Navbar,
+  Collapse,
+  Typography,
+  Button,
+  IconButton,
+  Input,
+} from "@material-tailwind/react";
+import { Bars3Icon, XMarkIcon } from "@heroicons/react/24/outline";
+import { NavLink } from "react-router-dom";
 
 function Header() {
-  const navigate = useNavigate();
-  const location = useLocation();
+  const [openNav, setOpenNav] = React.useState(false);
 
-  function handleRoute(route) {
-    navigate(route);
-  }
+  React.useEffect(() => {
+    window.addEventListener(
+      "resize",
+      () => window.innerWidth >= 960 && setOpenNav(false)
+    );
+  }, []);
+
+  const navList = (
+    <ul className="mb-4 mt-2 flex flex-col gap-2 lg:mb-0 lg:mt-0 lg:flex-row lg:items-center lg:gap-6">
+      <Typography
+        as="li"
+        variant="small"
+        className="p-1 font-bold text-gray-600"
+      >
+        <NavLink className="flex items-center" to="/create">
+          create Activity
+        </NavLink>
+      </Typography>
+      <Typography
+        as="li"
+        variant="small"
+        className="p-1 font-bold text-gray-600"
+      >
+        <NavLink className="flex items-center" to="/create">
+          Chat room
+        </NavLink>
+      </Typography>
+      <Typography
+        as="li"
+        variant="small"
+        className="p-1 font-bold text-gray-600"
+      >
+        <a href="#" className="flex items-center">
+          View unjionied Activities
+        </a>
+      </Typography>
+      <Typography
+        as="li"
+        variant="small"
+        className="p-1 font-bold text-gray-600"
+      >
+        <NavLink className="flex items-center" to="/home">
+          Home
+        </NavLink>
+      </Typography>
+    </ul>
+  );
 
   return (
-    <>
-      <Disclosure as="nav" className="bg-gray-800">
-        <div className="mx-auto max-w-7xl px-2 sm:px-6 lg:px-8">
-          <div className="relative flex h-16 items-center justify-between">
-            <div className="absolute inset-y-0 left-0 flex items-center sm:hidden">
-              {/* Mobile menu button */}
-              <DisclosureButton className="group relative inline-flex items-center justify-center rounded-md p-2 text-gray-400 hover:bg-gray-700 hover:text-white focus:outline-none focus:ring-2 focus:ring-inset focus:ring-white">
-                <span className="sr-only">Open main menu</span>
-                <Bars3Icon className="block h-6 w-6" aria-hidden="true" />
-                <XMarkIcon
-                  className="hidden h-6 w-6 group-data-[open]:block"
-                  aria-hidden="true"
+    <Navbar className="fixed top-1 left-0 right-0 mx-auto max-w-screen-xl px-4 py-2 lg:px-8 lg:py-4 bg-white shadow-lg z-50">
+      <div className="container mx-auto flex flex-wrap items-center justify-between text-blue-gray-900">
+        <Typography as="a" className="mr-4 cursor-pointer py-1.5 font-medium">
+          Blogo
+        </Typography>
+        <div className="hidden items-center gap-x-2 lg:flex">
+          <div className="relative flex w-full gap-2 md:w-max">
+            <Input
+              type="search"
+              placeholder="Search"
+              containerProps={{
+                className: "min-w-[288px]",
+              }}
+              className=" !border-t-blue-gray-300 pl-9 placeholder:text-blue-gray-300 focus:!border-blue-gray-300"
+              labelProps={{
+                className: "before:content-none after:content-none",
+              }}
+            />
+            <div className="!absolute left-3 top-[13px]">
+              <svg
+                width="13"
+                height="14"
+                viewBox="0 0 14 15"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  d="M9.97811 7.95252C10.2126 7.38634 10.3333 6.7795 10.3333 6.16667C10.3333 4.92899 9.84167 3.742 8.9665 2.86683C8.09133 1.99167 6.90434 1.5 5.66667 1.5C4.42899 1.5 3.242 1.99167 2.36683 2.86683C1.49167 3.742 1 4.92899 1 6.16667C1 6.7795 1.12071 7.38634 1.35523 7.95252C1.58975 8.51871 1.93349 9.03316 2.36683 9.4665C2.80018 9.89984 3.31462 10.2436 3.88081 10.4781C4.447 10.7126 5.05383 10.8333 5.66667 10.8333C6.2795 10.8333 6.88634 10.7126 7.45252 10.4781C8.01871 10.2436 8.53316 9.89984 8.9665 9.4665C9.39984 9.03316 9.74358 8.51871 9.97811 7.95252Z"
+                  fill="#CFD8DC"
                 />
-              </DisclosureButton>
+                <path
+                  d="M13 13.5L9 9.5M10.3333 6.16667C10.3333 6.7795 10.2126 7.38634 9.97811 7.95252C9.74358 8.51871 9.39984 9.03316 8.9665 9.4665C8.53316 9.89984 8.01871 10.2436 7.45252 10.4781C6.88634 10.7126 6.2795 10.8333 5.66667 10.8333C5.05383 10.8333 4.447 10.7126 3.88081 10.4781C3.31462 10.2436 2.80018 9.89984 2.36683 9.4665C1.93349 9.03316 1.58975 8.51871 1.35523 7.95252C1.12071 7.38634 1 6.7795 1 6.16667C1 4.92899 1.49167 3.742 2.36683 2.86683C3.242 1.99167 4.42899 1.5 5.66667 1.5C6.90434 1.5 8.09133 1.99167 8.9665 2.86683C9.84167 3.742 10.3333 4.92899 10.3333 6.16667Z"
+                  stroke="#CFD8DC"
+                  strokeWidth="2"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                />
+              </svg>
             </div>
-            <div className="flex flex-1 items-center justify-center sm:items-stretch sm:justify-start">
-              <div className="hidden sm:ml-6 sm:block">
-                <div className="flex space-x-4">
-                  {navigation.map((item) => (
-                    <a
-                      key={item.name}
-                      onClick={() => handleRoute(item.link)}
-                      className={classNames(
-                        location.pathname === item.link
-                          ? "bg-gray-900 text-white"
-                          : "text-gray-300 hover:bg-gray-700 hover:text-white",
-                        "rounded-md px-3 py-2 text-sm font-medium"
-                      )}
-                      aria-current={
-                        location.pathname === item.link ? "page" : undefined
-                      }
-                    >
-                      {item.name}
-                    </a>
-                  ))}
-                </div>
+          </div>
+          <Button size="md" className="rounded-lg ">
+            Search
+          </Button>
+        </div>
+        <hr className="mb-3 mt-6 hidden w-full lg:block" />
+        <IconButton
+          variant="text"
+          className="lg:hidden"
+          onClick={() => setOpenNav(!openNav)}
+        >
+          {openNav ? (
+            <XMarkIcon className="h-6 w-6" strokeWidth={2} />
+          ) : (
+            <Bars3Icon className="h-6 w-6" strokeWidth={2} />
+          )}
+        </IconButton>
+        <div className="hidden lg:block">{navList}</div>
+      </div>
+      <Collapse open={openNav}>
+        <div className="container mx-auto">
+          {navList}
+          <div className="flex flex-col gap-x-2 sm:flex-row sm:items-center">
+            <div className="relative w-full gap-2 md:w-max">
+              <Input
+                type="search"
+                placeholder="Search"
+                containerProps={{
+                  className: "min-w-[288px]",
+                }}
+                className=" !border-t-blue-gray-300 pl-9 placeholder:text-blue-gray-300 focus:!border-blue-gray-300"
+                labelProps={{
+                  className: "before:content-none after:content-none",
+                }}
+              />
+              <div className="!absolute left-3 top-[13px]">
+                <svg
+                  width="13"
+                  height="14"
+                  viewBox="0 0 14 15"
+                  fill="none"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    d="M9.97811 7.95252C10.2126 7.38634 10.3333 6.7795 10.3333 6.16667C10.3333 4.92899 9.84167 3.742 8.9665 2.86683C8.09133 1.99167 6.90434 1.5 5.66667 1.5C4.42899 1.5 3.242 1.99167 2.36683 2.86683C1.49167 3.742 1 4.92899 1 6.16667C1 6.7795 1.12071 7.38634 1.35523 7.95252C1.58975 8.51871 1.93349 9.03316 2.36683 9.4665C2.80018 9.89984 3.31462 10.2436 3.88081 10.4781C4.447 10.7126 5.05383 10.8333 5.66667 10.8333C6.2795 10.8333 6.88634 10.7126 7.45252 10.4781C8.01871 10.2436 8.53316 9.89984 8.9665 9.4665C9.39984 9.03316 9.74358 8.51871 9.97811 7.95252Z"
+                    fill="#CFD8DC"
+                  />
+                  <path
+                    d="M13 13.5L9 9.5M10.3333 6.16667C10.3333 6.7795 10.2126 7.38634 9.97811 7.95252C9.74358 8.51871 9.39984 9.03316 8.9665 9.4665C8.53316 9.89984 8.01871 10.2436 7.45252 10.4781C6.88634 10.7126 6.2795 10.8333 5.66667 10.8333C5.05383 10.8333 4.447 10.7126 3.88081 10.4781C3.31462 10.2436 2.80018 9.89984 2.36683 9.4665C1.93349 9.03316 1.58975 8.51871 1.35523 7.95252C1.12071 7.38634 1 6.7795 1 6.16667C1 4.92899 1.49167 3.742 2.36683 2.86683C3.242 1.99167 4.42899 1.5 5.66667 1.5C6.90434 1.5 8.09133 1.99167 8.9665 2.86683C9.84167 3.742 10.3333 4.92899 10.3333 6.16667Z"
+                    stroke="#CFD8DC"
+                    strokeWidth="2"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                  />
+                </svg>
               </div>
             </div>
-            <div className="absolute inset-y-0 right-0 flex items-center pr-2 sm:static sm:inset-auto sm:ml-6 sm:pr-0">
-              <button
-                type="button"
-                className="relative rounded-full bg-gray-800 p-1 text-gray-400 hover:text-white focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800"
-              >
-                <span className="sr-only">View notifications</span>
-                <BellIcon className="h-6 w-6" aria-hidden="true" />
-              </button>
-
-              {/* Profile dropdown */}
-              <Menu as="div" className="relative ml-3">
-                <MenuButton className="relative flex rounded-full bg-gray-800 text-sm focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800">
-                  <span className="sr-only">Open user menu</span>
-                  <img
-                    src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80"
-                    alt="User avatar"
-                    className="h-8 w-8 rounded-full"
-                  />
-                </MenuButton>
-                <MenuItems className="absolute right-0 z-10 mt-2 w-48 origin-top-right rounded-md bg-white py-1 shadow-lg ring-1 ring-black ring-opacity-5">
-                  <MenuItem>
-                    {({ active }) => (
-                      <button
-                        className={classNames(
-                          active ? "bg-gray-100" : "",
-                          "block w-full px-4 py-2 text-sm text-gray-700"
-                        )}
-                      >
-                        Your Profile
-                      </button>
-                    )}
-                  </MenuItem>
-                  <MenuItem>
-                    {({ active }) => (
-                      <button
-                        className={classNames(
-                          active ? "bg-gray-100" : "",
-                          "block w-full px-4 py-2 text-sm text-gray-700"
-                        )}
-                      >
-                        Settings
-                      </button>
-                    )}
-                  </MenuItem>
-                  <MenuItem>
-                    {({ active }) => (
-                      <button
-                        className={classNames(
-                          active ? "bg-gray-100" : "",
-                          "block w-full px-4 py-2 text-sm text-gray-700"
-                        )}
-                      >
-                        Sign out
-                      </button>
-                    )}
-                  </MenuItem>
-                </MenuItems>
-              </Menu>
-            </div>
+            <Button size="md" className="mt-1 rounded-lg sm:mt-0">
+              Search
+            </Button>
           </div>
         </div>
-
-        <DisclosurePanel className="sm:hidden">
-          <div className="space-y-1 px-2 pb-3 pt-2">
-            {navigation.map((item) => (
-              <DisclosureButton
-                key={item.name}
-                onClick={() => handleRoute(item.link)}
-                className={classNames(
-                  location.pathname === item.link
-                    ? "bg-gray-900 text-white"
-                    : "text-gray-300 hover:bg-gray-700 hover:text-white",
-                  "block rounded-md px-3 py-2 text-base font-medium"
-                )}
-                aria-current={
-                  location.pathname === item.link ? "page" : undefined
-                }
-              >
-                {item.name}
-              </DisclosureButton>
-            ))}
-          </div>
-        </DisclosurePanel>
-      </Disclosure>
-    </>
+      </Collapse>
+    </Navbar>
   );
 }
 

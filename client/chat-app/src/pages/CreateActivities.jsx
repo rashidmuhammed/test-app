@@ -57,7 +57,7 @@ function CreateActivities() {
   }
 
   return (
-    <div className="flex flex-col mx-3 mt-6 lg:flex-row justify-center align-middle">
+    <div className="flex flex-col mx-3 mt-48 lg:flex-row justify-center align-middle ">
       <div className="w-full lg:w-1/3 m-1">
         <form
           onSubmit={formik.handleSubmit}

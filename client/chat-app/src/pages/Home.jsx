@@ -1,191 +1,51 @@
+import {
+  Card,
+  CardHeader,
+  CardBody,
+  Typography,
+  Avatar,
+} from "@material-tailwind/react";
+
 function Home() {
   return (
     <>
-      <section className="dark:bg-gray-100 dark:text-gray-800">
-        <div className="container max-w-6xl p-6 mx-auto space-y-6 sm:space-y-12">
-          <a
-            rel="noopener noreferrer"
-            href="#"
-            className="block max-w-sm gap-3 mx-auto sm:max-w-full group hover:no-underline focus:no-underline lg:grid lg:grid-cols-12 dark:bg-gray-50"
-          >
-            <img
-              src="https://source.unsplash.com/random/480x360"
-              alt=""
-              className="object-cover w-full h-64 rounded sm:h-96 lg:col-span-7 dark:bg-gray-500"
-            />
-            <div className="p-6 space-y-2 lg:col-span-5">
-              <h3 className="text-2xl font-semibold sm:text-4xl group-hover:underline group-focus:underline">
-                Noster tincidunt reprimique ad pro
-              </h3>
-              <span className="text-xs dark:text-gray-600">
-                February 19, 2021
-              </span>
-              <p>
-                Ei delenit sensibus liberavisse pri. Quod suscipit no nam. Est
-                in graece fuisset, eos affert putent doctus id.
-              </p>
-            </div>
-          </a>
-          <div className="grid justify-center grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
-            <a
-              rel="noopener noreferrer"
-              href="#"
-              className="max-w-sm mx-auto group hover:no-underline focus:no-underline dark:bg-gray-50"
+      <section className="mt-44 pl-6">
+        <div className="grid gap-6 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
+          {[1, 2, 3].map((item) => (
+            <Card
+              key={item}
+              shadow={false}
+              className="relative grid h-[40rem] w-full max-w-[28rem] items-end justify-center overflow-hidden text-center"
             >
-              <img
-                role="presentation"
-                className="object-cover w-full rounded h-44 dark:bg-gray-500"
-                src="https://source.unsplash.com/random/480x360?1"
-              />
-              <div className="p-6 space-y-2">
-                <h3 className="text-2xl font-semibold group-hover:underline group-focus:underline">
-                  In usu laoreet repudiare legendos
-                </h3>
-                <span className="text-xs dark:text-gray-600">
-                  January 21, 2021
-                </span>
-                <p>
-                  Mei ex aliquid eleifend forensibus, quo ad dicta apeirian
-                  neglegentur, ex has tantas percipit perfecto. At per tempor
-                  albucius perfecto, ei probatus consulatu patrioque mea, ei
-                  vocent delicata indoctum pri.
-                </p>
-              </div>
-            </a>
-            <a
-              rel="noopener noreferrer"
-              href="#"
-              className="max-w-sm mx-auto group hover:no-underline focus:no-underline dark:bg-gray-50"
-            >
-              <img
-                role="presentation"
-                className="object-cover w-full rounded h-44 dark:bg-gray-500"
-                src="https://source.unsplash.com/random/480x360?2"
-              />
-              <div className="p-6 space-y-2">
-                <h3 className="text-2xl font-semibold group-hover:underline group-focus:underline">
-                  In usu laoreet repudiare legendos
-                </h3>
-                <span className="text-xs dark:text-gray-600">
-                  January 22, 2021
-                </span>
-                <p>
-                  Mei ex aliquid eleifend forensibus, quo ad dicta apeirian
-                  neglegentur, ex has tantas percipit perfecto. At per tempor
-                  albucius perfecto, ei probatus consulatu patrioque mea, ei
-                  vocent delicata indoctum pri.
-                </p>
-              </div>
-            </a>
-            <a
-              rel="noopener noreferrer"
-              href="#"
-              className="max-w-sm mx-auto group hover:no-underline focus:no-underline dark:bg-gray-50"
-            >
-              <img
-                role="presentation"
-                className="object-cover w-full rounded h-44 dark:bg-gray-500"
-                src="https://source.unsplash.com/random/480x360?3"
-              />
-              <div className="p-6 space-y-2">
-                <h3 className="text-2xl font-semibold group-hover:underline group-focus:underline">
-                  In usu laoreet repudiare legendos
-                </h3>
-                <span className="text-xs dark:text-gray-600">
-                  January 23, 2021
-                </span>
-                <p>
-                  Mei ex aliquid eleifend forensibus, quo ad dicta apeirian
-                  neglegentur, ex has tantas percipit perfecto. At per tempor
-                  albucius perfecto, ei probatus consulatu patrioque mea, ei
-                  vocent delicata indoctum pri.
-                </p>
-              </div>
-            </a>
-            <a
-              rel="noopener noreferrer"
-              href="#"
-              className="max-w-sm mx-auto group hover:no-underline focus:no-underline dark:bg-gray-50 hidden sm:block"
-            >
-              <img
-                role="presentation"
-                className="object-cover w-full rounded h-44 dark:bg-gray-500"
-                src="https://source.unsplash.com/random/480x360?4"
-              />
-              <div className="p-6 space-y-2">
-                <h3 className="text-2xl font-semibold group-hover:underline group-focus:underline">
-                  In usu laoreet repudiare legendos
-                </h3>
-                <span className="text-xs dark:text-gray-600">
-                  January 24, 2021
-                </span>
-                <p>
-                  Mei ex aliquid eleifend forensibus, quo ad dicta apeirian
-                  neglegentur, ex has tantas percipit perfecto. At per tempor
-                  albucius perfecto, ei probatus consulatu patrioque mea, ei
-                  vocent delicata indoctum pri.
-                </p>
-              </div>
-            </a>
-            <a
-              rel="noopener noreferrer"
-              href="#"
-              className="max-w-sm mx-auto group hover:no-underline focus:no-underline dark:bg-gray-50 hidden sm:block"
-            >
-              <img
-                role="presentation"
-                className="object-cover w-full rounded h-44 dark:bg-gray-500"
-                src="https://source.unsplash.com/random/480x360?5"
-              />
-              <div className="p-6 space-y-2">
-                <h3 className="text-2xl font-semibold group-hover:underline group-focus:underline">
-                  In usu laoreet repudiare legendos
-                </h3>
-                <span className="text-xs dark:text-gray-600">
-                  January 25, 2021
-                </span>
-                <p>
-                  Mei ex aliquid eleifend forensibus, quo ad dicta apeirian
-                  neglegentur, ex has tantas percipit perfecto. At per tempor
-                  albucius perfecto, ei probatus consulatu patrioque mea, ei
-                  vocent delicata indoctum pri.
-                </p>
-              </div>
-            </a>
-            <a
-              rel="noopener noreferrer"
-              href="#"
-              className="max-w-sm mx-auto group hover:no-underline focus:no-underline dark:bg-gray-50 hidden sm:block"
-            >
-              <img
-                role="presentation"
-                className="object-cover w-full rounded h-44 dark:bg-gray-500"
-                src="https://source.unsplash.com/random/480x360?6"
-              />
-              <div className="p-6 space-y-2">
-                <h3 className="text-2xl font-semibold group-hover:underline group-focus:underline">
-                  In usu laoreet repudiare legendos
-                </h3>
-                <span className="text-xs dark:text-gray-600">
-                  January 26, 2021
-                </span>
-                <p>
-                  Mei ex aliquid eleifend forensibus, quo ad dicta apeirian
-                  neglegentur, ex has tantas percipit perfecto. At per tempor
-                  albucius perfecto, ei probatus consulatu patrioque mea, ei
-                  vocent delicata indoctum pri.
-                </p>
-              </div>
-            </a>
-          </div>
-          <div className="flex justify-center">
-            <button
-              type="button"
-              className="px-6 py-3 text-sm rounded-md hover:underline dark:bg-gray-50 dark:text-gray-600"
-            >
-              Load more posts...
-            </button>
-          </div>
+              <CardHeader
+                floated={false}
+                shadow={false}
+                color="transparent"
+                className="absolute inset-0 m-0 h-full w-full rounded-none bg-[url('https://images.unsplash.com/photo-1552960562-daf630e9278b?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=687&q=80')] bg-cover bg-center"
+              >
+                <div className="to-bg-black-10 absolute inset-0 h-full w-full bg-gradient-to-t from-black/80 via-black/50" />
+              </CardHeader>
+              <CardBody className="relative py-14 px-6 md:px-12">
+                <Typography
+                  variant="h2"
+                  color="white"
+                  className="mb-6 font-medium leading-[1.5]"
+                >
+                  How we design and code open-source projects?
+                </Typography>
+                <Typography variant="h5" className="mb-4 text-gray-400">
+                  Tania Andrew
+                </Typography>
+                <Avatar
+                  size="xl"
+                  variant="circular"
+                  alt="Tania Andrew"
+                  className="border-2 border-white"
+                  src="https://images.unsplash.com/photo-1633332755192-727a05c4013d?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1480&q=80"
+                />
+              </CardBody>
+            </Card>
+          ))}
         </div>
       </section>
     </>
