@@ -51,9 +51,7 @@ const getAllActivitiesUserNotJoined = async (req, res) => {
 
     res.status(200).json({
       success: true,
-      data: {
-        title: result.rows[0].title,
-      },
+      data: result.rows,
     });
   } catch (err) {
     console.error("Error fetching activities:", err);
@@ -65,4 +63,41 @@ const getAllActivitiesUserNotJoined = async (req, res) => {
   }
 };
 
-module.exports = { createActivity, getAllActivitiesUserNotJoined };
+const getAllActivities = async (req, res) => {
+  const user_id = req.query.user_id;
+
+  if (!user_id) {
+    return res.status(400).json({
+      success: false,
+      message: "User ID is required",
+    });
+  }
+
+  try {
+    const activities = await client.query(
+      `SELECT * 
+       FROM activities 
+       WHERE user_id = $1 
+          OR $1 = ANY(joined_users);`,
+      [user_id]
+    );
+
+    res.status(200).json({
+      success: true,
+      data: activities.rows,
+    });
+  } catch (err) {
+    console.error(err);
+    res.status(500).json({
+      success: false,
+      message: "Failed to fetch activities",
+      error: err.message,
+    });
+  }
+};
+
+module.exports = {
+  createActivity,
+  getAllActivitiesUserNotJoined,
+  getAllActivities,
+};

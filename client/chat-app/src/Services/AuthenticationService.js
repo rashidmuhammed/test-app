@@ -43,12 +43,25 @@ class AuthenticationService {
     try {
       const response = await axios.post(
         "http://localhost:5000/users/createActivity",
-        activity
+        activity,
+        { headers: { "Content-Type": "application/json" } }
       );
       return response.data;
     } catch (error) {
       console.error("activity failed:", error);
-      throw error.response?.data || new Error("Signup error");
+      throw error.response?.data || new Error("actvity error");
+    }
+  }
+
+  async getActivity(id) {
+    try {
+      const response = await axios.get(
+        `http://localhost:5000/users/getAllActivities?user_id=${id}`
+      );
+      return response.data;
+    } catch (error) {
+      console.error("activity failed:", error);
+      throw error.response?.data || new Error("Activity error");
     }
   }
 

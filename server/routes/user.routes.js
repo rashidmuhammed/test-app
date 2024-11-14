@@ -7,4 +7,5 @@ router.route("/register").post(authenticationAPIs.registerUser);
 router.route("/login").post(authenticationAPIs.loginUser);
 router.route("/createActivity").post(activityAPIs.createActivity);
 router.route("/not-joined").get(activityAPIs.getAllActivitiesUserNotJoined);
+router.route("/getAllActivities").get(activityAPIs.getAllActivities);
 module.exports = router;
